@@ -10,15 +10,8 @@ router.post('/', isLoggedIn, (req, res, next) => {
     req.logout((err) => {
         if(err)
             return next(err);
-        req.session.destroy((err) => {
-            if(err)
-                return next(err);
-            //react
-            //res.status(200).json({ message : "logout success"});
-            //html
-            res.redirect('/');
-        })
-
+        req.session.destroy();
+        res.clearCookie();
     })
 });
 
